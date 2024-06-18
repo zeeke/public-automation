@@ -13,16 +13,9 @@ set -x
 
 #pr_list=`gh pr list -R github.com/k8snetworkplumbingwg/sriov-network-operator`
 pr_list=`gh pr list -R github.com/k8snetworkplumbingwg/sriov-network-operator --state open --json number,author,headRefName,url --template "{{- range . -}}
-		{{- tablerow .number .author.login .headRefName .url -}}
+		{{- tablerow .url -}}
 	{{- end -}}"`
 
 while IFS= read -r line; do
-    number=`echo $line | awk '{print $1}'`
-    author=`echo $line | awk '{print $2}'`
-    ref=`echo $line | awk '{print $3}'`
-    url=`echo $line | awk '{print $4}'`
-
-    bash ./sriov-operator-pr-images/build-pr.sh $number $author $ref $url
-
-
+    bash ./sriov-operator-pr-images/build-pr.sh $line
 done <<< "$pr_list"
