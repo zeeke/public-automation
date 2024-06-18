@@ -21,4 +21,8 @@ while IFS= read -r line; do
     author=`echo $line | awk '{print $2}'`
     ref=`echo $line | awk '{print $3}'`
     url=`echo $line | awk '{print $4}'`
+
+    bash ./sriov-operator-pr-images/build-pr.sh $number $author $ref $url
+
+
 done <<< "$pr_list"
