@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x
+set -e
 
 number=$1
 author=$2
@@ -24,9 +25,9 @@ SRIOV_NETWORK_OPERATOR_IMAGE="ghcr.io/zeeke/sriov-network-operator:$TAG"
 SRIOV_NETWORK_CONFIG_DAEMON_IMAGE="ghcr.io/zeeke/sriov-network-operator-config-daemon:$TAG"
 SRIOV_NETWORK_WEBHOOK_IMAGE="ghcr.io/zeeke/sriov-network-operator-webhook:$TAG"
 
-docker build -t ${SRIOV_NETWORK_OPERATOR_IMAGE} -f "Dockerfile" .
+docker build -t ${SRIOV_NETWORK_OPERATOR_IMAGE} -f Dockerfile .
 docker build -t ${SRIOV_NETWORK_CONFIG_DAEMON_IMAGE} -f Dockerfile.sriov-network-config-daemon .
-docekr build -t ${SRIOV_NETWORK_WEBHOOK_IMAGE} -f Dockerfile.webhook .
+docker build -t ${SRIOV_NETWORK_WEBHOOK_IMAGE} -f Dockerfile.webhook .
 
 echo $GITHUB_TOKEN | docker login ghcr.io -u zeeke --password-stdin
 
