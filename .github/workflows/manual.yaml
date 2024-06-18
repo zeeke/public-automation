@@ -1,10 +1,9 @@
-name: "periodics"
-
-on:
-  push:
-    branches: [ "nobranch" ]
-  #schedule:
-  #  - cron: "48 5 * * 6"
+on: 
+  workflow_dispatch:
+    inputs:
+      prurl:
+        description: 'PR URL'     
+        required: true
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -20,4 +19,4 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run
-        run: ./sriov-operator-pr-images/main.sh
+        run: ./sriov-operator-pr-images/build-pr.sh ${{ github.event.inputs.prurl }}
