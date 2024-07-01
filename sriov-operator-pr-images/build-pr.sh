@@ -26,7 +26,7 @@ docker build -t ${SRIOV_NETWORK_OPERATOR_IMAGE} -f Dockerfile .
 docker build -t ${SRIOV_NETWORK_CONFIG_DAEMON_IMAGE} -f Dockerfile.sriov-network-config-daemon .
 docker build -t ${SRIOV_NETWORK_WEBHOOK_IMAGE} -f Dockerfile.webhook .
 
-echo $GITHUB_TOKEN | docker login ghcr.io -u zeeke --password-stdin
+echo $GH_TOKEN | docker login ghcr.io -u zeeke --password-stdin
 
 docker push ${SRIOV_NETWORK_OPERATOR_IMAGE}
 docker push ${SRIOV_NETWORK_CONFIG_DAEMON_IMAGE}
