@@ -24,3 +24,6 @@ jobs:
 
       - name: Run
         run: ./sriov-operator-pr-images/build-pr.sh ${{ github.event.inputs.prurl }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
