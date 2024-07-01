@@ -1,3 +1,4 @@
+name: "Build SR-IOV images from PR"
 on: 
   workflow_dispatch:
     inputs:
